@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function Home() {
   const [items, setItems] = useState<Array<{id:number; name:string}>>([]);
   useEffect(() => {
-    fetch('http://localhost:7000/api/items')
+    fetch('/api/items')
       .then((res) => res.json())
       .then(setItems)
       .catch(console.error);

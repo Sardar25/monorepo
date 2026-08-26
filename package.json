@@ -6,6 +6,8 @@
   "scripts": {
     "client": "npm run dev --workspace client",
     "server": "node server/index.js",
+    "build": "npm run build --workspace client",
+    "start": "node server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

@@ -6,6 +6,10 @@ const path = require('path');
  * workspace root, fixing the "ignored package.json" warning.
  */
 const nextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
   turbopack: {
     // Resolve to the monorepo root (two levels up from the client folder)
     root: path.resolve(__dirname, '..'),
