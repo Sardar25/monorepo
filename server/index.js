@@ -28,4 +28,8 @@ app.use((req, res) => {
   res.sendFile(path.join(clientOutPath, 'index.html'));
 });
 
-app.listen(port, () => console.log(`Server listening on ${port}`));
+if (require.main === module || !process.env.VERCEL) {
+  app.listen(port, () => console.log(`Server listening on ${port}`));
+}
+
+module.exports = app;
