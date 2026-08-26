@@ -6,7 +6,8 @@ import Image from "next/image";
 export default function Home() {
   const [items, setItems] = useState<Array<{id:number; name:string}>>([]);
   useEffect(() => {
-    fetch('/api/items')
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || '';
+    fetch(`${apiUrl}/api/items`)
       .then((res) => res.json())
       .then(setItems)
       .catch(console.error);
