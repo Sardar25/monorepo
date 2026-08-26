@@ -10,8 +10,8 @@ const port = process.env.PORT || 7000;
 // Path to client static export folder
 const clientOutPath = path.join(__dirname, '../client/out');
 
-// Serve static assets from Next.js export
-app.use(express.static(clientOutPath));
+// Serve static assets from Next.js export (enabling .html extension resolution)
+app.use(express.static(clientOutPath, { extensions: ['html'] }));
 
 // Dummy data endpoint
 app.get('/api/items', (req, res) => {
@@ -23,9 +23,9 @@ app.get('/api/items', (req, res) => {
   res.json(items);
 });
 
-// SPA wildcard fallback (handles all other routes, compatible with Express v5)
+// SPA wildcard fallback (handles unmatched routes by serving the 404 page)
 app.use((req, res) => {
-  res.sendFile(path.join(clientOutPath, 'index.html'));
+  res.status(404).sendFile(path.join(clientOutPath, '404.html'));
 });
 
 if (require.main === module || !process.env.VERCEL) {
